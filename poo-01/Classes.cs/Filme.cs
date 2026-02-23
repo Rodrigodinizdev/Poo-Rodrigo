@@ -6,6 +6,6 @@ public class Filme : Conteudo
 
     public override void Reproduzir()
     {
-        System.Console.WriteLine($"Cine: {Titulo} | Diretor: {NomeDiretor}");
+        System.Console.WriteLine($"Filme: {Titulo} | Diretor: {NomeDiretor}");
     }
 }
