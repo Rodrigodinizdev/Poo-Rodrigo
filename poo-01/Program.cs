@@ -10,6 +10,14 @@ Filme filme1 = new Filme
     NomeDiretor = "Rodrigo"
 };
 
+playlist.Add(new Musica
+{
+    Titulo = "aaa",
+    Ano = 2015,
+    ClassificacaoIndicativa = 10,
+    NomeArtista = "Indefinido"
+});
+
 Musica musica1 = new Musica
 {
     Titulo = "tuh tuh",
@@ -30,9 +38,9 @@ Usuario usuario1 = new Usuario
 
 foreach (var conteudo in playlist)
 {
-    conteudo.ConferirIdade(usuario1);   
+    conteudo.ConferirIdade(usuario1);
 }
-    
+
 
 System.Console.WriteLine("\nConteudos após 2020");
 foreach (var conteudo in playlist)

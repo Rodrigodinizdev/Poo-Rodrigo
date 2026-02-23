@@ -5,6 +5,6 @@ public class Musica : Conteudo
 
     public override void Reproduzir()
     {
-        System.Console.WriteLine($"Som: {Titulo} | Artista: {NomeArtista}");
+        System.Console.WriteLine($"Música: {Titulo} | Artista: {NomeArtista}");
     }
 }
