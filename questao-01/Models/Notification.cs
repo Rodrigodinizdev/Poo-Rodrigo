@@ -8,10 +8,12 @@ public class NotificationHandler
     {
         Notifications = new List<Notification>();
     }
-    
+
     public Notification AddNotification(string message, NotificationType type)
     {
-        return new Notification(message, type);
+        var notification = new Notification(message, type);
+        Notifications.Add(notification);
+        return notification;
     }
 
     public void AddError(string message)

@@ -4,23 +4,16 @@ public class ClienteFactory(NotificationHandler notificationHandler)
 {
     public Cliente CriarCliente(int id, string nome, string telefoneValue)
     {
-        var telefone = ObterTelefone(telefoneValue);
+        var telefone = new Telefone(telefoneValue);
 
-        if (notificationHandler.HasErrors())
-            return null;
-
-        return new Cliente(id, nome, telefone);
-    }
-
-    public Telefone ObterTelefone(string numero)
-    {
-        var telefone =  new Telefone(numero);
         if (!telefone.IsValid())
         {
             notificationHandler.AddError("Telefone inválido. O número deve conter 9 dígitos.");
             return null;
         }
 
-        return telefone;
+        var cliente = new Cliente(id, nome, telefone);
+        notificationHandler.AddSuccess($"Cliente {nome} criado com sucesso.");
+        return cliente;
     }
 }

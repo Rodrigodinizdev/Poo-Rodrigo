@@ -13,7 +13,7 @@ public class Restaurante(NotificationHandler notificationHandler)
             return;
         }
 
-        var proximoId = Mesas.Max(m => m.Id) + 1;
+        var proximoId = Mesas.Any() ? Mesas.Max(m => m.Id) + 1 : 1;
 
         Mesas.Add(new Mesa(proximoId, capacidadeDaMesa));
         notificationHandler.AddSuccess($"Mesa com capacidade para {capacidadeDaMesa} pessoas adicionada com sucesso.");
