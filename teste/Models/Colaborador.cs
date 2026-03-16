@@ -2,12 +2,16 @@ namespace teste.Models;
 
 public class Colaborador
 {
-    public Colaborador(int id, int idUsuario)
+    public Colaborador(string idUsuario)
     {
-
+        Id = Guid.NewGuid().ToString();
+        IdUsuario = idUsuario;
     }
-    public int Id { get; }
-    public int IdUsuario { get; }
-    public int IdSuperior { get; }
+    public string Id { get; }
+    public string IdUsuario { get; }
+    public string IdSuperior { get; private set; }
 
+    public void DefinirSuperiorDireto(string idSuperior) => IdSuperior = idSuperior;
+
+    public string ObterCodigoGerenteResponsavelFormatado() => IdSuperior.Substring(1, 7);
 }

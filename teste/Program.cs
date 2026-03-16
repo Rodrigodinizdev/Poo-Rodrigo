@@ -1,8 +1,13 @@
 ﻿using teste.Enums;
 using teste.Models;
 
-Usuario usuario = new Usuario(1, PerfilAcessoEnum.Administrador, "João", "joao@email.com");
+Usuario usuarioGestor = new Usuario(PerfilAcessoEnum.Funcionario, "arthur lanches", "arthur@lanches.com");
+Usuario usuarioSubordinado = new Usuario(PerfilAcessoEnum.Funcionario, "João", "joao@email.com");
 
-usuario.AtualizarSenha("Rodrigo123");
+// Console.WriteLine(usuarioGestor.ToString()); 
+// Console.WriteLine(usuarioSubordinado.ToString()); 
 
-System.Console.WriteLine(usuario.ToString()); 
+usuarioSubordinado.DefinirSuperiorDiretoDoColaborador(usuarioGestor.Id);
+
+Console.WriteLine(usuarioGestor);
+Console.WriteLine(usuarioSubordinado);
