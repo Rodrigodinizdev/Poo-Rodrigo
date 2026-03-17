@@ -1,17 +1,62 @@
+using teste.Enums;
+
 namespace teste.Models;
 
-public class Colaborador
+public abstract class Colaborador
 {
-    public Colaborador(string idUsuario)
+    public Colaborador(string idUsuario, string nome, DateTime dataNascimento)
     {
         Id = Guid.NewGuid().ToString();
         IdUsuario = idUsuario;
+        Nome = nome;
+        DataNascimento = dataNascimento;
     }
     public string Id { get; }
     public string IdUsuario { get; }
-    public string IdSuperior { get; private set; }
+    public string Nome { get; private set; }
+    public DateTime DataNascimento { get; private set; }
+    public Gerente Superior { get; private set; }
+    public abstract CargoEnum Cargo { get; protected set; }
+    public List<Tarefa> tarefas { get; } = [];
 
-    public void DefinirSuperiorDireto(string idSuperior) => IdSuperior = idSuperior;
+    public void AtualizarDadosPessoais(string nome, DateTime dataNascimento)
+    {
+        Nome = nome;
+        DataNascimento = dataNascimento;
+    }
 
-    public string ObterCodigoGerenteResponsavelFormatado() => IdSuperior.Substring(1, 7);
+    public void DefinirSuperiorDireto(Colaborador colaborador)
+    {
+       if(colaborador is not Gerente gerente)
+        {
+            Console.Error.WriteLine("O colaborador deve ser um gerente para ser definido como superior direto.");
+            return;
+        } 
+
+        Superior = gerente;
+    }
+
+    public void AdicionarTarefa(Tarefa tarefa) => tarefas.Add(tarefa);
+
+    public List<Tarefa> ListarTarefas()
+    {
+        if(tarefas.Count == 0)
+        {
+            Console.Error.WriteLine("Nenhuma tarefa atribuida a este colaborador");
+            return [];
+        }
+
+        return tarefas;
+    }
+
+      public List<Tarefa> ListarTarefas(bool status)
+    {
+        if(tarefas.Count == 0)
+        {
+            Console.Error.WriteLine("Nenhuma tarefa atribuida a este colaborador");
+            return [];
+        }
+
+        return tarefas;
+    }
 }
